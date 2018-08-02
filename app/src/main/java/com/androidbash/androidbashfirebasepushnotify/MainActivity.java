@@ -29,22 +29,26 @@ public class MainActivity extends AppCompatActivity {
         // is used when no click_action is specified.
         //
         // Handle possible data accompanying notification message.
-        if (getIntent().getExtras() != null) {
+       try {
+           if (getIntent().getExtras() != null) {
 
-            for (String key : getIntent().getExtras().keySet()) {
-                String value = getIntent().getExtras().getString(key);
+               for (String key : getIntent().getExtras().keySet()) {
+                   String value = getIntent().getExtras().getString(key);
 
-                if (key.equals("AnotherActivity") && value.equals("True")) {
-                    Intent intent = new Intent(this, AnotherActivity.class);
-                    intent.putExtra("value", value);
-                    startActivity(intent);
-                    finish();
-                }
+                   if (key.equals("AnotherActivity") && value.equals("True")) {
+                       Intent intent = new Intent(this, AnotherActivity.class);
+                       intent.putExtra("value", value);
+                       startActivity(intent);
+                       finish();
+                   }
 
-            }
-        }
+               }
+           }
 
-        subscribeToPushService();
+           subscribeToPushService();
+       }catch (Exception e){
+           Log.e("println message:", e.getMessage());
+       }
 
     }
 
